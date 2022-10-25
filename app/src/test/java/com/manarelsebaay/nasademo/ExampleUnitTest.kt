@@ -1,4 +1,4 @@
-package com.manarelsebaay.nasa_demo
+package com.manarelsebaay.nasademo
 
 import org.junit.Test
 

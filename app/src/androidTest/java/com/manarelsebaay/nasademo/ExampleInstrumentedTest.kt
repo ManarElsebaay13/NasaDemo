@@ -1,4 +1,4 @@
-package com.manarelsebaay.nasa_demo
+package com.manarelsebaay.nasademo
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
