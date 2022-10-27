@@ -94,5 +94,7 @@ dependencies {
 
     //kenburn imageview
     implementation 'com.flaviofaria:kenburnsview:1.0.7'
+    //coil
+    implementation "io.coil-kt:coil-compose:1.4.0"
 
 }

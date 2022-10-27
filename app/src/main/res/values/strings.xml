@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">NASA-Demo</string>
+    <string name="nasa">NASA</string>
+    <string name="opportunity">Opportunity</string>
+    <string name="spirit">Spirit</string>
+    <string name="curiosity">Curiosity</string>
 </resources>

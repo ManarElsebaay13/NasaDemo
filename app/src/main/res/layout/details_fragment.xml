@@ -6,7 +6,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <com.flaviofaria.kenburnsview.KenBurnsView
-        android:id="@+id/rover_photo"
+        android:id="@+id/photo"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_200sdp"
         android:alpha="200"
@@ -22,7 +22,7 @@
         android:layout_width="match_parent"
         android:orientation="vertical"
         android:layout_marginTop="@dimen/_20sdp"
-        app:layout_constraintTop_toBottomOf="@id/rover_photo"
+        app:layout_constraintTop_toBottomOf="@id/photo"
         android:layout_height="wrap_content">
 
 
@@ -36,7 +36,7 @@
             android:maxLines="3"
             android:layout_margin="10dp"
             android:textColor="@android:color/black"
-            android:textSize="@dimen/_25sdp"
+            android:textSize="@dimen/_15sdp"
             android:textStyle="bold"
             tools:text="name"
             android:fontFamily="@font/play_fair_display_black"
@@ -54,7 +54,7 @@
             android:ellipsize="end"
             android:maxLines="2"
             tools:text="launchdate"
-            android:textSize="@dimen/_20sdp"
+            android:textSize="@dimen/_10sdp"
             android:layout_margin="@dimen/_10sdp"
             android:textDirection="anyRtl"
             android:textColor="@android:color/darker_gray"
@@ -73,7 +73,7 @@
             android:maxLines="5"
             tools:text="landdate"
             android:layout_margin="10dp"
-            android:textSize="@dimen/_20sdp"
+            android:textSize="@dimen/_10sdp"
             android:textDirection="anyRtl"
             android:textColor="@android:color/darker_gray"
             app:layout_constraintEnd_toEndOf="parent"
