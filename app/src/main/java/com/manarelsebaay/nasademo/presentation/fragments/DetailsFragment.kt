@@ -20,7 +20,6 @@ class DetailsFragment :Fragment(R.layout.details_fragment) {
     lateinit var launchtxt:TextView
     lateinit var landtxt:TextView
 
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,

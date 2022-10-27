@@ -6,6 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.navigation.findNavController
+import androidx.recyclerview.widget.AsyncListDiffer
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.manarelsebaay.nasa_demo.R
 import com.manarelsebaay.nasa_demo.databinding.MarsPhotosItemBinding
@@ -17,15 +19,21 @@ class MarsPhotosAdapter(): RecyclerView.Adapter<MarsPhotosAdapter.Holder>() {
     private var MarsPhotosList = mutableListOf<Photo>()
     lateinit var context: Context
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
-        context=parent.context
-        return Holder(
-            LayoutInflater.from(context).inflate(R.layout.mars_photos_item,parent,false)
-        )
+
+    private val differCallback = object : DiffUtil.ItemCallback<Photo>() {
+        override fun areItemsTheSame(oldItem: Photo, newItem: Photo): Boolean { return oldItem.id == newItem.id }
+
+        override fun areContentsTheSame(oldItem: Photo, newItem: Photo): Boolean { return oldItem == newItem }
     }
+    val differ = AsyncListDiffer(this, differCallback)
+
+
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder { context=parent.context
+        return Holder(LayoutInflater.from(context).inflate(R.layout.mars_photos_item,parent,false)) }
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
-        val photo= MarsPhotosList?.get(position)
+        val photo= differ.currentList[position]
         holder.rover.text= "Rover : ${photo?.rover?.name.toString()}"
         holder.camera.text= "Camera : ${photo?.camera?.fullName.toString()}"
         holder.date.text="Date : ${photo?.earthDate.toString()}"
@@ -37,20 +45,20 @@ class MarsPhotosAdapter(): RecyclerView.Adapter<MarsPhotosAdapter.Holder>() {
             it.findNavController().navigate(R.id.action_homeFragment_to_detailsFragment , bundle,null, null) }
     }
 
-    override fun getItemCount(): Int { return MarsPhotosList?.size ?: 0 }
+    override fun getItemCount(): Int { return differ.currentList.size}
 
     class Holder(itemView: View):RecyclerView.ViewHolder(itemView){
         val binding= MarsPhotosItemBinding.bind(itemView)
         val rover= binding.roverTxt
         val camera=binding.cameraTxt
-        val date =binding.dateTxt
-    }
-
-    fun setPhotos(photo: List<Photo>){
-        this.MarsPhotosList.addAll(photo)
-        notifyDataSetChanged() }
+        val date =binding.dateTxt }
 
     fun clear() {
         this.MarsPhotosList.clear()
         notifyDataSetChanged() }
+
+//    fun setPhotos(photo: List<Photo>){
+//        this.MarsPhotosList.addAll(photo)
+//        notifyDataSetChanged() }
+
 }

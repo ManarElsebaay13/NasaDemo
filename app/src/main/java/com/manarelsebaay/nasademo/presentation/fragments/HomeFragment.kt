@@ -8,16 +8,18 @@ import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.manarelsebaay.nasa_demo.R
 import com.manarelsebaay.nasa_demo.databinding.HomeFragmentBinding
 import com.manarelsebaay.nasademo.adapters.MarsPhotosAdapter
 import com.manarelsebaay.nasademo.db.model.Photo
-import com.manarelsebaay.nasademo.utils.filterTypes
-import com.manarelsebaay.nasademo.presentation.viewmodel.MainViewModel
+import com.manarelsebaay.nasademo.presentation.main.MainActivity
+import com.manarelsebaay.nasademo.presentation.main.MainViewModel
 import com.manarelsebaay.nasademo.utils.Resource
+import com.manarelsebaay.nasademo.utils.filterTypes
+
 
 class HomeFragment :Fragment(R.layout.home_fragment) ,View.OnClickListener{
     val TAG = "Home Fragment"
@@ -34,12 +36,12 @@ class HomeFragment :Fragment(R.layout.home_fragment) ,View.OnClickListener{
         savedInstanceState: Bundle?
     ): View? {
 
-        viewModel=ViewModelProvider(this)[MainViewModel::class.java]
         binding = HomeFragmentBinding.inflate(inflater, container, false)
         return binding.root    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        viewModel = (activity as MainActivity).viewModel
         initViews()
         initData()
     }
@@ -52,6 +54,7 @@ class HomeFragment :Fragment(R.layout.home_fragment) ,View.OnClickListener{
         binding.filters.Spirit.setOnClickListener(this)
         val marsPhotosManager: LinearLayoutManager? = LinearLayoutManager(this.context, LinearLayoutManager.VERTICAL, false)
         marsPhotosRv.layoutManager=marsPhotosManager
+        marsPhotosRv.addItemDecoration(DividerItemDecoration(context, marsPhotosManager?.getOrientation() ?: 0))
         marsPhotosRv.adapter=marsPhotosAdapter }
 
 
@@ -61,7 +64,6 @@ class HomeFragment :Fragment(R.layout.home_fragment) ,View.OnClickListener{
     }
 
     private fun filter(rover:filterTypes){ viewModel.onLoading(rover) }
-
     private fun refreshState(photoInfoListState: Resource<List<Photo>>) {
         when (photoInfoListState) {
             is Resource.Loading -> {
@@ -70,7 +72,11 @@ class HomeFragment :Fragment(R.layout.home_fragment) ,View.OnClickListener{
             }
             is Resource.Success -> {
                 binding.ProgressBar.visibility = View.GONE
-                marsPhotosAdapter.setPhotos(photoInfoListState.data)
+
+                for (i in 0..photoInfoListState.data.size - 1){
+                    viewModel.savePhoto(photoInfoListState.data[i])
+                }
+                marsPhotosAdapter.differ.submitList(photoInfoListState.data)
             }
             is Resource.Error -> {
                 binding.ProgressBar.visibility = View.GONE

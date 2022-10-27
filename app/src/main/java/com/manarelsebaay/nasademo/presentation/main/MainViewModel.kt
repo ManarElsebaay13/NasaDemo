@@ -1,4 +1,4 @@
-package com.manarelsebaay.nasademo.presentation.viewmodel
+package com.manarelsebaay.nasademo.presentation.main
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -12,9 +12,8 @@ import kotlinx.coroutines.launch
 import retrofit2.HttpException
 import java.io.IOException
 
-class MainViewModel :ViewModel() {
+class MainViewModel ( val repository : MainRepository): ViewModel() {
 
-     val repository = MainRepository()
      fun photoListState(): LiveData<Resource<List<Photo>>> = photoListState
      private val photoListState: MutableLiveData<Resource<List<Photo>>> = MutableLiveData()
      var currentRover: filterTypes = filterTypes.Curiosity
@@ -32,4 +31,7 @@ class MainViewModel :ViewModel() {
                 photoListState.value = Resource.Error("Check your internet connection")
             } } }
 
+    //DB
+    fun savePhoto (item: Photo)=viewModelScope.launch { repository.insert(item) }
+    fun getPhotos() = repository.getAllPhotos()
 }
