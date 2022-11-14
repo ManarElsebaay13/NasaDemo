@@ -3,29 +3,11 @@
   NasaDemo
 </h1>
 
-:point_right: Clean Architecture:
+:point_right: Clean Architecture: MVVM
 -----------------
 <div align="center">
-<img src="https://github.com/Mina-Mikhail/Kotlin-Base-MVVM/blob/master/images/architecture.png">
+<img src="https://camo.githubusercontent.com/0ff5a5738b5561398acfa8563660dafbb5a4fa1e844fc171f930f2228c358f0d/68747470733a2f2f6d69726f2e6d656469756d2e636f6d2f6d61782f313430302f312a3375354a6e6d714f4e5234556e7752453674455633512e706e67">
 </div>
-
-
-:point_right: Domain & Data Layer:
------------------
-<div align="center">
-<img src="https://github.com/Mina-Mikhail/Kotlin-Base-MVVM/blob/master/images/data_layer.png">
-</div>
-
-
-:point_right: Presentation Layer:
------------------
-<div align="center">
-<img src="https://github.com/Mina-Mikhail/Kotlin-Base-MVVM/blob/master/images/ui_layer.png">
-</div>
-
-
-:point_right: Architecture:
------------------
 
 - Following Clean Architecture.
 - MVVM Architecture.
