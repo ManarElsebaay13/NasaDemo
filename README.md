@@ -12,10 +12,9 @@
 - Following Clean Architecture.
 - MVVM Architecture.
 - Repository pattern.
-- Use Cases.
 - Applying SOLID principles, each class has a single job with separation of concerns by making classes independent
   of each other and communicating with interfaces.
-- Using Kotlin-KTS & buildSrc to handle project dependencies.
+
 
 :point_right: Tech Stack & Libraries:
 -----------------
@@ -26,12 +25,16 @@
 - Kotlin Coroutines - for managing background threads with simplified code and reducing needs for callbacks
 - Retrofit2 & OkHttp3 - to make REST requests to the web service integrated.
 
-:point_right: Project Structure:
+:point_right: Project Screens:
 -----------------
 
-- Tasks contains the following screens :
 
-  
+https://user-images.githubusercontent.com/39746086/201927337-08c4b0c2-af52-4cac-ab31-be98378dc653.mov
+
+
+![re3](https://user-images.githubusercontent.com/39746086/201948177-d6034da4-8f20-4cab-9aa7-50da5e532c2b.gif)
+
+
 
 :warning: License:
 --------
