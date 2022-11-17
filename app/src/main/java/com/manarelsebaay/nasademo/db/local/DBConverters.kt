@@ -15,7 +15,7 @@ class DBConverters {
 
     @TypeConverter
     fun toSource(name:String):Camera{
-        return Camera(name,name,name,name.toInt())
+        return Camera(name,name,name,name)
     }
 
 
@@ -27,7 +27,7 @@ class DBConverters {
 
     @TypeConverter
     fun rovertoSource(name:String):Rover{
-        return Rover(name.toInt(),name,name,name,name)
+        return Rover(name,name,name,name,name)
     }
 
 }
